@@ -1,24 +1,53 @@
 def mean(numbers):
+    if len(numbers) == 0:
+        return None
     return sum(numbers) / len(numbers)
 
 def median(numbers):
+    if len(numbers) == 0:
+        return None
     numbers.sort()
     n = len(numbers)
-    mid = n // 2
     if n % 2 == 0:
-        return (numbers[mid - 1] + numbers[mid]) / 2
+        return (numbers[n // 2 - 1] + numbers[n // 2]) / 2
     else:
-        return numbers[mid]
+        return numbers[n // 2]
 
 def mode(numbers):
-    from collections import Counter
-    counts = Counter(numbers)
-    return max(counts, key=counts.get)
+    if len(numbers) == 0:
+        return None
+    count = {}
+    for num in numbers:
+        if num in count:
+            count[num] += 1
+        else:
+            count[num] = 1
+    max_count = max(count.values())
+    modes = [k for k, v in count.items() if v == max_count]
+    if len(modes) == 1:
+        return modes[0]
+    return None
 
 if __name__ == "__main__":
-    # Sample Test Case
-    numbers = [1, 2, 2, 3, 4, 4, 4, 5]
-    print("Numbers:", numbers)
+    # Input a list of numbers
+    print ("Input a list of numbers.")
+    print ("Enter x to compute for the Mean, Median, Mode.")
+    numbers = []
+    print ("")
+    while True: 
+        user_input == input()
+        if user_input == "x":
+            break
+    try:
+        numbers.append(float(user_input))
+    except ValueError:
+        print("Please enter a valid number.")
+
+    print("")
     print("Mean:", mean(numbers))
     print("Median:", median(numbers))
-    print("Mode:", mode(numbers))
+    mode_result = mode(numbers)    
+    if mode_result is not None:
+        print("Mode:", mode_result)
+    else:
+        print("Mode: No mode was found")
