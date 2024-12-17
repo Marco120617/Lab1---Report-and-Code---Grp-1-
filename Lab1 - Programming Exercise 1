@@ -1,0 +1,24 @@
+def mean(numbers):
+    return sum(numbers) / len(numbers)
+
+def median(numbers):
+    numbers.sort()
+    n = len(numbers)
+    mid = n // 2
+    if n % 2 == 0:
+        return (numbers[mid - 1] + numbers[mid]) / 2
+    else:
+        return numbers[mid]
+
+def mode(numbers):
+    from collections import Counter
+    counts = Counter(numbers)
+    return max(counts, key=counts.get)
+
+if __name__ == "__main__":
+    # Sample Test Case
+    numbers = [1, 2, 2, 3, 4, 4, 4, 5]
+    print("Numbers:", numbers)
+    print("Mean:", mean(numbers))
+    print("Median:", median(numbers))
+    print("Mode:", mode(numbers))
