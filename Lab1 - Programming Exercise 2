@@ -1,13 +1,10 @@
 def main():
    
     filename = input("Enter the filename: ")
-
-    try:
-       
+    try:      
         with open(filename, 'r') as file:
             lines = file.readlines()
 
-        
         if not lines:
             print("The file is empty. Nothing to display.")
             return
@@ -17,7 +14,6 @@ def main():
         print(f"The file has {len(lines)} lines.")
 
         while True:
-         
             try:
                 line_number = int(input("Enter a line number (0 to quit): "))
                 if line_number == 0:
