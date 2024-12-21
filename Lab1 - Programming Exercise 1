@@ -18,10 +18,7 @@ def mode(numbers):
         return None
     count = {}
     for num in numbers:
-        if num in count:
-            count[num] += 1
-        else:
-            count[num] = 1
+        count[num] = count.get(num, 0) + 1
     max_count = max(count.values())
     modes = [k for k, v in count.items() if v == max_count]
     if len(modes) == 1:
@@ -30,24 +27,22 @@ def mode(numbers):
 
 if __name__ == "__main__":
     # Input a list of numbers
-    print ("Input a list of numbers.")
-    print ("Enter x to compute for the Mean, Median, Mode.")
+    print("Input a list of numbers (type 'x' to finish):")
     numbers = []
-    print ("")
-    while True: 
-        user_input == input()
-        if user_input == "x":
+    while True:
+        user_input = input("> ")
+        if user_input.lower() == "x":
             break
-    try:
-        numbers.append(float(user_input))
-    except ValueError:
-        print("Please enter a valid number.")
+        try:
+            numbers.append(float(user_input))
+        except ValueError:
+            print("Please enter a valid number or 'x' to finish.")
 
-    print("")
-    print("Mean:", mean(numbers))
-    print("Median:", median(numbers))
-    mode_result = mode(numbers)    
+    print("\nResults:")
+    print("Mean:", mean(numbers) if numbers else "N/A")
+    print("Median:", median(numbers) if numbers else "N/A")
+    mode_result = mode(numbers)
     if mode_result is not None:
         print("Mode:", mode_result)
     else:
-        print("Mode: No mode was found")
+        print("Mode: No mode was found.")
